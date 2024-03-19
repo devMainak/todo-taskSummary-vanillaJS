@@ -12,21 +12,21 @@
   <div class="container">
     <h3 class="display-3 fw-semibold my-4">To-Do List</h3>
     <form id="taskForm">
-    <div class="mb-3">
-      <label class="form-lable fs-5 fw-normal mb-2" for="taskInput">Enter Task:</label>
-      <div class="input-group">
-        <input id="taskInput" class="form-control" placeholder="Enter your task" type="text" required/>
+      <div class="mb-3">
+        <label class="form-lable fs-5 fw-normal mb-2" for="taskInput">Enter Task:</label>
+        <div class="input-group">
+          <input id="taskInput" class="form-control" placeholder="Enter your task" type="text" required />
+        </div>
       </div>
-    </div>
-    <div class="mb-3">
-    <label class="form-lable fs-5 fw-normal mb-2" for="dayInput">Select Day:</label>
-    <div class="input-group">
-      <select id="dayInput" class="form-select">
-        <option value="today">Today</option>
-        <option value="tomorrow">Tomorrow</option>
-      </select>
-    </div>
-    </div>
+      <div class="mb-3">
+        <label class="form-lable fs-5 fw-normal mb-2" for="dayInput">Select Day:</label>
+        <div class="input-group">
+          <select id="dayInput" class="form-select">
+            <option value="today">Today</option>
+            <option value="tomorrow">Tomorrow</option>
+          </select>
+        </div>
+      </div>
       <button type="submit" class="btn btn-primary">Add Task</button>
     </form>
     <div class="my-4 row">
@@ -52,13 +52,12 @@
 
     let todayTaskCount = 0
     let tomorrowTaskCount = 0
-    taskForm.addEventListener("submit", function(event){
+    taskForm.addEventListener("submit", function (event) {
       event.preventDefault()
-      
+
       const task = taskInput.value
       const day = dayInput.value
-      if (day === "today")
-      {
+      if (day === "today") {
         const listItem = document.createElement('li')
         listItem.className = "list-group-item fs-6 fw-normal"
         listItem.innerHTML = `${task} <button class="btn btn-danger float-end" onclick="deleteTodaysTasks(this)">Delete</button>`
@@ -66,8 +65,7 @@
         todayTaskCount++
         updateTaskSummary()
       }
-      else if (day === "tomorrow")
-      {
+      else if (day === "tomorrow") {
         const listItem = document.createElement('li')
         listItem.className = "list-group-item"
         listItem.innerHTML = `${task} <button class="btn btn-danger float-end" onclick="deleteTomorrowsTasks(this)">Delete</button>`
@@ -91,19 +89,16 @@
       updateTaskSummary()
     }
 
-    function updateTaskSummary(){
-      if (todayTaskCount === tomorrowTaskCount)
-      {
+    function updateTaskSummary() {
+      if (todayTaskCount === tomorrowTaskCount) {
         taskSummary.style.color = "black"
         taskSummary.textContent = `Tasks Today: ${todayTaskCount} | Tasks Tomorrow: ${tomorrowTaskCount}`
       }
-      else if (todayTaskCount > tomorrowTaskCount)
-      {
+      else if (todayTaskCount > tomorrowTaskCount) {
         taskSummary.style.color = "red"
         taskSummary.innerHTML = `Tasks Today: ${todayTaskCount} | Tasks Tomorrow: ${tomorrowTaskCount} <br>More tasks today!`
       }
-      else if (tomorrowTaskCount > todayTaskCount)
-      {
+      else if (tomorrowTaskCount > todayTaskCount) {
         taskSummary.style.color = "green"
         taskSummary.innerHTML = `Tasks Today: ${todayTaskCount} | Tasks Tomorrow: ${tomorrowTaskCount} <br>More tasks tomorrow!`
       }
